@@ -7,6 +7,7 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 import { NzPaginationModule } from 'ng-zorro-antd/pagination';
+import { NzImageModule } from 'ng-zorro-antd/image';
 @NgModule({
   declarations: [LoaderComponent],
   imports: [
@@ -17,6 +18,7 @@ import { NzPaginationModule } from 'ng-zorro-antd/pagination';
     NzSpinModule,
     NzSkeletonModule,
     NzPaginationModule,
+    NzImageModule,
   ],
   exports: [
     LoaderComponent,
@@ -26,6 +28,7 @@ import { NzPaginationModule } from 'ng-zorro-antd/pagination';
     NzSpinModule,
     NzSkeletonModule,
     NzPaginationModule,
+    NzImageModule,
   ],
 })
 export class SharedModule {}

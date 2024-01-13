@@ -1,1 +1,5 @@
-<swapi-list-item [peopleList]="peopleList"></swapi-list-item>
+<nz-skeleton [nzLoading]="!!(isLoading$ | async)">
+  <nz-list nzItemLayout="vertical">
+    <swapi-list-item [peopleList]="peopleList"></swapi-list-item>
+  </nz-list>
+</nz-skeleton>

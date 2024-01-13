@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, map, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { LoaderService } from 'src/app/core/services/loader.service';
 import { MainService } from 'src/app/core/services/main.service';
 import { PeopleResponseViewModel } from 'src/app/shared/models/PeopleResponseViewModel';
@@ -12,7 +12,9 @@ import { PeopleResponseViewModel } from 'src/app/shared/models/PeopleResponseVie
 export class PeopleListComponent implements OnInit {
   isLoading$: Observable<boolean> = this.loaderService.isLoading$;
   peopleList: PeopleResponseViewModel[] = [];
-  private pageIndex: number = 1;
+  pageIndex: number = 1;
+  pageSize: number = 10;
+  totalItems: number = 10;
 
   constructor(
     private mainService: MainService,
@@ -20,6 +22,13 @@ export class PeopleListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.mainService.getPeople(this.pageIndex).subscribe((peopleList) => {
+      this.peopleList = peopleList;
+    });
+  }
+
+  onPageChange(pageIndex: number): void {
+    this.pageIndex = pageIndex;
     this.mainService.getPeople(this.pageIndex).subscribe((peopleList) => {
       this.peopleList = peopleList;
     });

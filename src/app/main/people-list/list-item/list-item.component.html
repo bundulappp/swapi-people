@@ -1,4 +1,4 @@
-<nz-list-item class="card-container" *ngFor="let person of peopleList">
+<nz-list-item *ngFor="let person of peopleList" class="card-container">
   <nz-list-item-meta>
     <nz-list-item-meta-title>
       <h2>{{ person.name }}</h2>
@@ -7,16 +7,29 @@
       Born: {{ person.birth_year }}
     </nz-list-item-meta-description>
   </nz-list-item-meta>
-  <div class="button-container">
-    <button nz-button nzType="primary">Show more</button>
-  </div>
   <nz-list-item-extra>
     <img
       nz-image
       width="200px"
       height="200px"
       nzSrc="https://picsum.photos/seed/picsum/200/200"
-      alt=""
+      alt="{{ person.name }}"
     />
   </nz-list-item-extra>
+  <div class="button-container">
+    <button nz-button [nzType]="'primary'" (click)="showModal(person)">
+      <span>Show Details</span>
+    </button>
+  </div>
 </nz-list-item>
+<nz-modal
+  [(nzVisible)]="isVisible"
+  [nzTitle]="selectedPerson?.name"
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="handleOk()"
+>
+  <ng-container *nzModalContent>
+    <p>Name: {{ selectedPerson?.name }}</p>
+    <p>Birth Year: {{ selectedPerson?.birth_year }}</p>
+  </ng-container>
+</nz-modal>

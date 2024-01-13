@@ -14,7 +14,7 @@ export class PeopleListComponent implements OnInit {
   peopleList: PeopleResponseViewModel[] = [];
   pageIndex: number = 1;
   pageSize: number = 10;
-  totalItems: number = 10;
+  peopleTotalCount: number = 10;
 
   constructor(
     private mainService: MainService,
@@ -25,6 +25,10 @@ export class PeopleListComponent implements OnInit {
     this.mainService.getPeople(this.pageIndex).subscribe((peopleList) => {
       this.peopleList = peopleList;
     });
+
+    this.mainService.peopleTotalCount$.subscribe(
+      (totalCount) => (this.peopleTotalCount = totalCount)
+    );
   }
 
   onPageChange(pageIndex: number): void {

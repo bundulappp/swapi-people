@@ -1,7 +1,4 @@
-<swapi-search-bar
-  (searchEvent)="handleSearch($event)"
-  [filmList]="filmList"
-></swapi-search-bar>
+<swapi-search-bar (searchEvent)="handleSearch($event)"></swapi-search-bar>
 <nz-skeleton [nzLoading]="!!(isLoading$ | async)">
   <nz-list nzItemLayout="vertical">
     <swapi-list-item [peopleList]="peopleList"></swapi-list-item>

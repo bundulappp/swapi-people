@@ -17,19 +17,36 @@
     />
   </nz-list-item-extra>
   <div class="button-container">
-    <button nz-button [nzType]="'primary'" (click)="showModal(person)">
+    <button
+      nz-button
+      [nzType]="'primary'"
+      (click)="showDetails(person)"
+      (click)="getPlanet(person.homeworld)"
+    >
       <span>Show Details</span>
     </button>
   </div>
 </nz-list-item>
 <nz-modal
+  [nzCancelText]="null"
+  [nzClosable]="false"
   [(nzVisible)]="isVisible"
   [nzTitle]="selectedPerson?.name"
-  (nzOnCancel)="handleCancel()"
   (nzOnOk)="handleOk()"
 >
   <ng-container *nzModalContent>
-    <p>Name: {{ selectedPerson?.name }}</p>
-    <p>Birth Year: {{ selectedPerson?.birth_year }}</p>
+    <p>Height: {{ selectedPerson?.height }} cm</p>
+    <p>Mass: {{ selectedPerson?.mass }} kg</p>
+    <p>Birth Date: {{ selectedPerson?.birth_year }}</p>
+    <p>
+      Number of films featuring the character:
+      {{ selectedPerson?.films?.length }}
+    </p>
+    <div class="planet-container" *ngIf="!(isLoading$ | async)">
+      <h3>Homeworld:</h3>
+      <p>Name: {{ selectedPersonPlanet?.name }}</p>
+      <p>Terrain: {{ selectedPersonPlanet?.terrain }}</p>
+      <p>Climate: {{ selectedPersonPlanet?.climate }}</p>
+    </div>
   </ng-container>
 </nz-modal>

@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable, map, tap } from 'rxjs';
 import { PeopleResponseViewModel } from '../../shared/models/PeopleResponseViewModel';
 import { environment } from '../../../environments/environment';
 import { PeopleDataResponseModel } from 'src/app/shared/models/PeopleDataResponseModel';
+import { PlanetResponseViewModel } from 'src/app/shared/models/PlanetsResponseViewModel';
 
 @Injectable({
   providedIn: 'root',
@@ -30,9 +31,18 @@ export class MainService {
             mass: people.mass,
             birth_year: people.birth_year,
             films: people.films,
-            planet: people.planet,
+            homeworld: people.homeworld,
           }))
         )
       );
+  }
+  getPlanetByUrl(url: string): Observable<PlanetResponseViewModel> {
+    return this.http.get<any>(url).pipe(
+      map((response) => ({
+        name: response.name,
+        terrain: response.terrain,
+        climate: response.climate,
+      }))
+    );
   }
 }

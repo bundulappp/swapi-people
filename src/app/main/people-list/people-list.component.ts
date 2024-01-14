@@ -37,4 +37,12 @@ export class PeopleListComponent implements OnInit {
       this.peopleList = peopleList;
     });
   }
+
+  handleSearch(results: PeopleResponseViewModel[]): void {
+    this.peopleList = results;
+    this.peopleTotalCount = results.length;
+    this.mainService.peopleTotalCount$.subscribe(
+      (totalCount) => (this.peopleTotalCount = totalCount)
+    );
+  }
 }

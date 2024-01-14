@@ -9,6 +9,8 @@ import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { NzImageModule } from 'ng-zorro-antd/image';
 import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [LoaderComponent],
   imports: [
@@ -21,6 +23,8 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
     NzPaginationModule,
     NzImageModule,
     NzModalModule,
+    NzInputModule,
+    FormsModule,
   ],
   exports: [
     LoaderComponent,
@@ -32,6 +36,8 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
     NzPaginationModule,
     NzImageModule,
     NzModalModule,
+    NzInputModule,
+    FormsModule,
   ],
 })
 export class SharedModule {}

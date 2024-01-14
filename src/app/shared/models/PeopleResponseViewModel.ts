@@ -7,5 +7,5 @@ export interface PeopleResponseViewModel {
   mass: string;
   birth_year: string;
   films: string[];
-  planet?: PlanetResponseViewModel;
+  homeworld: string;
 }

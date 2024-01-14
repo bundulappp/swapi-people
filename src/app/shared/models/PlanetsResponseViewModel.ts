@@ -1,4 +1,5 @@
 export interface PlanetResponseViewModel {
   name: string;
-  url: string;
+  terrain: string;
+  climate: string;
 }

@@ -5,6 +5,8 @@ import { PeopleResponseViewModel } from '../../shared/models/PeopleResponseViewM
 import { environment } from '../../../environments/environment';
 import { PeopleDataResponseModel } from 'src/app/shared/models/PeopleDataResponseModel';
 import { PlanetResponseViewModel } from 'src/app/shared/models/PlanetsResponseViewModel';
+import { FilmsResponseViewModel } from 'src/app/shared/models/FilmsResponseViewModel';
+import { FilmsDataResponseModel } from 'src/app/shared/models/FilmsDataResponseModel';
 
 @Injectable({
   providedIn: 'root',
@@ -44,6 +46,20 @@ export class MainService {
       .pipe(
         tap((response) => this.peopleTotalCount.next(response.count)),
         map((response) => this.mapPeopleData(response))
+      );
+  }
+
+  getFilmsSummary(): Observable<FilmsResponseViewModel[]> {
+    return this.http
+      .get<FilmsDataResponseModel>(`${environment.apiUrl}/films`)
+      .pipe(
+        map((resposne) =>
+          resposne.results.map((films) => ({
+            title: films.title,
+            url: films.url,
+            characters: films.characters,
+          }))
+        )
       );
   }
 

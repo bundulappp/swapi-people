@@ -1,0 +1,54 @@
+<nz-list-item *ngFor="let person of peopleList" class="card-container">
+  <nz-list-item-meta>
+    <nz-list-item-meta-title>
+      <h2>{{ person.name }}</h2>
+    </nz-list-item-meta-title>
+    <nz-list-item-meta-description>
+      Born: {{ person.birth_year }}
+    </nz-list-item-meta-description>
+  </nz-list-item-meta>
+  <nz-list-item-extra>
+    <img
+      nz-image
+      width="200px"
+      height="200px"
+      nzSrc="https://picsum.photos/seed/picsum/200/200"
+      alt="{{ person.name }}"
+    />
+  </nz-list-item-extra>
+  <div class="button-container">
+    <button
+      nz-button
+      [nzType]="'primary'"
+      (click)="showDetails(person)"
+      (click)="getPlanet(person.homeworld)"
+    >
+      <span>Show Details</span>
+    </button>
+  </div>
+</nz-list-item>
+<nz-modal
+  [nzCancelText]="null"
+  [nzClosable]="false"
+  [(nzVisible)]="isVisible"
+  [nzTitle]="selectedPerson?.name"
+  (nzOnOk)="handleOk()"
+>
+  <ng-container *nzModalContent>
+    <div class="person-container">
+      <p>Height: {{ selectedPerson?.height }} cm</p>
+      <p>Mass: {{ selectedPerson?.mass }} kg</p>
+      <p>Birth Date: {{ selectedPerson?.birth_year }}</p>
+      <p>
+        Number of films featuring the character:
+        {{ selectedPerson?.films?.length }}
+      </p>
+    </div>
+    <div class="planet-container" *ngIf="!(isLoading$ | async)">
+      <p style="text-decoration: underline">Homeworld:</p>
+      <p>Name: {{ selectedPersonPlanet?.name | uppercase }}</p>
+      <p>Terrain: {{ selectedPersonPlanet?.terrain | uppercase }}</p>
+      <p>Climate: {{ selectedPersonPlanet?.climate | uppercase }}</p>
+    </div>
+  </ng-container>
+</nz-modal>

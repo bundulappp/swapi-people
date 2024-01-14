@@ -1,0 +1,12 @@
+.search-bar {
+  display: flex;
+  margin-bottom: 20px;
+  padding-bottom: 30px;
+  border-radius: 7px;
+  border-bottom: 1px solid #dadada;
+
+  .film {
+    margin: 0 15px 0 15px;
+    padding: 5px 0 5px 0;
+  }
+}

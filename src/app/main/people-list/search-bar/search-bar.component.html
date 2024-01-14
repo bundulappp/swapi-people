@@ -1,0 +1,35 @@
+<div class="search-bar">
+  <div class="name">
+    <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
+      <input
+        type="text"
+        [(ngModel)]="searchQuery"
+        (ngModelChange)="onSearchQueryChange(searchQuery)"
+        nz-input
+        placeholder="Please type a name..."
+      />
+    </nz-input-group>
+    <ng-template #suffixButton>
+      <button
+        (click)="getPersonByName(searchQuery)"
+        nz-button
+        nzType="default"
+        nzSize="default"
+        nzSearch
+      >
+        Search
+      </button>
+    </ng-template>
+  </div>
+  <!-- <div class="film">
+    <button nz-button nz-dropdown [nzDropdownMenu]="film">
+      Films
+      <span nz-icon nzType="down"></span>
+    </button>
+    <nz-dropdown-menu #film="nzDropdownMenu">
+      <ul nz-menu *ngFor="let film of filmList">
+        <li nz-menu-item (click)="onFilmSelect(film.url)">{{ film.title }}</li>
+      </ul>
+    </nz-dropdown-menu>
+  </div> -->
+</div>

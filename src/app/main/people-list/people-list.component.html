@@ -1,0 +1,18 @@
+<swapi-search-bar
+  (searchEvent)="handleSearch($event)"
+  [filmList]="filmList"
+></swapi-search-bar>
+<nz-skeleton [nzLoading]="!!(isLoading$ | async)">
+  <nz-list nzItemLayout="vertical">
+    <swapi-list-item [peopleList]="peopleList"></swapi-list-item>
+  </nz-list>
+  <div class="pagination">
+    <nz-pagination
+      [nzPageIndex]="pageIndex"
+      [nzTotal]="peopleTotalCount"
+      [nzPageSize]="pageSize"
+      (nzPageIndexChange)="onPageChange($event)"
+    >
+    </nz-pagination>
+  </div>
+</nz-skeleton>

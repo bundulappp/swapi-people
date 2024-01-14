@@ -35,18 +35,20 @@
   (nzOnOk)="handleOk()"
 >
   <ng-container *nzModalContent>
-    <p>Height: {{ selectedPerson?.height }} cm</p>
-    <p>Mass: {{ selectedPerson?.mass }} kg</p>
-    <p>Birth Date: {{ selectedPerson?.birth_year }}</p>
-    <p>
-      Number of films featuring the character:
-      {{ selectedPerson?.films?.length }}
-    </p>
+    <div class="person-container">
+      <p>Height: {{ selectedPerson?.height }} cm</p>
+      <p>Mass: {{ selectedPerson?.mass }} kg</p>
+      <p>Birth Date: {{ selectedPerson?.birth_year }}</p>
+      <p>
+        Number of films featuring the character:
+        {{ selectedPerson?.films?.length }}
+      </p>
+    </div>
     <div class="planet-container" *ngIf="!(isLoading$ | async)">
-      <h3>Homeworld:</h3>
-      <p>Name: {{ selectedPersonPlanet?.name }}</p>
-      <p>Terrain: {{ selectedPersonPlanet?.terrain }}</p>
-      <p>Climate: {{ selectedPersonPlanet?.climate }}</p>
+      <p style="text-decoration: underline">Homeworld:</p>
+      <p>Name: {{ selectedPersonPlanet?.name | uppercase }}</p>
+      <p>Terrain: {{ selectedPersonPlanet?.terrain | uppercase }}</p>
+      <p>Climate: {{ selectedPersonPlanet?.climate | uppercase }}</p>
     </div>
   </ng-container>
 </nz-modal>

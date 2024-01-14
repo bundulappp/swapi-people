@@ -49,6 +49,19 @@ export class MainService {
       );
   }
 
+  getPersonByUrl(url: string): Observable<PeopleResponseViewModel> {
+    return this.http.get<PeopleResponseViewModel>(url).pipe(
+      map((person) => ({
+        name: person.name,
+        height: person.height,
+        mass: person.mass,
+        birth_year: person.birth_year,
+        films: person.films,
+        homeworld: person.homeworld,
+      }))
+    );
+  }
+
   getFilmsSummary(): Observable<FilmsResponseViewModel[]> {
     return this.http
       .get<FilmsDataResponseModel>(`${environment.apiUrl}/films`)
@@ -61,6 +74,16 @@ export class MainService {
           }))
         )
       );
+  }
+
+  getFilmByUrl(url: string): Observable<FilmsResponseViewModel> {
+    return this.http.get<any>(url).pipe(
+      map((response) => ({
+        title: response.title,
+        url: response.url,
+        characters: response.characters,
+      }))
+    );
   }
 
   private mapPeopleData(

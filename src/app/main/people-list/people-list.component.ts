@@ -51,4 +51,15 @@ export class PeopleListComponent implements OnInit {
       (totalCount) => (this.peopleTotalCount = totalCount)
     );
   }
+
+  handleFilmCharactersSelected(characterUrls: string[]): void {
+    this.peopleList = [];
+
+    characterUrls.forEach((url) => {
+      this.mainService.getPersonByUrl(url).subscribe((person) => {
+        this.peopleList.push(person);
+        this.peopleTotalCount = this.peopleList.length;
+      });
+    });
+  }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LoaderService } from 'src/app/core/services/loader.service';
 import { MainService } from 'src/app/core/services/main.service';
+import { FilmsResponseViewModel } from 'src/app/shared/models/FilmsResponseViewModel';
 import { PeopleResponseViewModel } from 'src/app/shared/models/PeopleResponseViewModel';
 
 @Component({
@@ -15,6 +16,7 @@ export class PeopleListComponent implements OnInit {
   pageIndex: number = 1;
   pageSize: number = 10;
   peopleTotalCount: number = 10;
+  filmList: FilmsResponseViewModel[] = [];
 
   constructor(
     private mainService: MainService,
@@ -29,6 +31,10 @@ export class PeopleListComponent implements OnInit {
     this.mainService.peopleTotalCount$.subscribe(
       (totalCount) => (this.peopleTotalCount = totalCount)
     );
+
+    this.mainService
+      .getFilmsSummary()
+      .subscribe((data: FilmsResponseViewModel[]) => (this.filmList = data));
   }
 
   onPageChange(pageIndex: number): void {

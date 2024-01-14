@@ -11,6 +11,8 @@ import { NzImageModule } from 'ng-zorro-antd/image';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { FormsModule } from '@angular/forms';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+
 @NgModule({
   declarations: [LoaderComponent],
   imports: [
@@ -25,6 +27,7 @@ import { FormsModule } from '@angular/forms';
     NzModalModule,
     NzInputModule,
     FormsModule,
+    NzDropDownModule,
   ],
   exports: [
     LoaderComponent,
@@ -38,6 +41,7 @@ import { FormsModule } from '@angular/forms';
     NzModalModule,
     NzInputModule,
     FormsModule,
+    NzDropDownModule,
   ],
 })
 export class SharedModule {}

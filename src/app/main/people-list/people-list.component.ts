@@ -16,7 +16,7 @@ export class PeopleListComponent implements OnInit {
   pageIndex: number = 1;
   pageSize: number = 10;
   peopleTotalCount: number = 10;
-  filmList: FilmsResponseViewModel[] = [];
+  // filmList: FilmsResponseViewModel[] = [];
 
   constructor(
     private mainService: MainService,
@@ -31,10 +31,6 @@ export class PeopleListComponent implements OnInit {
     this.mainService.peopleTotalCount$.subscribe(
       (totalCount) => (this.peopleTotalCount = totalCount)
     );
-
-    this.mainService
-      .getFilmsSummary()
-      .subscribe((data: FilmsResponseViewModel[]) => (this.filmList = data));
   }
 
   onPageChange(pageIndex: number): void {
@@ -47,9 +43,6 @@ export class PeopleListComponent implements OnInit {
   handleSearch(results: PeopleResponseViewModel[]): void {
     this.peopleList = results;
     this.peopleTotalCount = results.length;
-    this.mainService.peopleTotalCount$.subscribe(
-      (totalCount) => (this.peopleTotalCount = totalCount)
-    );
   }
 
   handleFilmCharactersSelected(characterUrls: string[]): void {

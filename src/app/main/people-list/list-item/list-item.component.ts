@@ -31,7 +31,6 @@ export class ListItemComponent {
 
   getPlanet(url: string): void {
     this.mainService.getPlanetByUrl(url).subscribe((planet) => {
-      console.log(url);
       this.selectedPersonPlanet = planet;
     });
   }

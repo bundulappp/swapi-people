@@ -21,21 +21,11 @@ export class MainService {
         `${environment.apiUrl}/people/?page=${pageIndex}`
       )
       .pipe(
-        tap((response: PeopleDataResponseModel) =>
-          this.peopleTotalCount.next(response.count)
-        ),
-        map((response: PeopleDataResponseModel) =>
-          response.results.map((people: PeopleResponseViewModel) => ({
-            name: people.name,
-            height: people.height,
-            mass: people.mass,
-            birth_year: people.birth_year,
-            films: people.films,
-            homeworld: people.homeworld,
-          }))
-        )
+        tap((response) => this.peopleTotalCount.next(response.count)),
+        map((response) => this.mapPeopleData(response))
       );
   }
+
   getPlanetByUrl(url: string): Observable<PlanetResponseViewModel> {
     return this.http.get<any>(url).pipe(
       map((response) => ({
@@ -44,5 +34,29 @@ export class MainService {
         climate: response.climate,
       }))
     );
+  }
+
+  getPersonByName(name: string): Observable<PeopleResponseViewModel[]> {
+    return this.http
+      .get<PeopleDataResponseModel>(
+        `${environment.apiUrl}/people/?search=${name}`
+      )
+      .pipe(
+        tap((response) => this.peopleTotalCount.next(response.count)),
+        map((response) => this.mapPeopleData(response))
+      );
+  }
+
+  private mapPeopleData(
+    response: PeopleDataResponseModel
+  ): PeopleResponseViewModel[] {
+    return response.results.map((people) => ({
+      name: people.name,
+      height: people.height,
+      mass: people.mass,
+      birth_year: people.birth_year,
+      films: people.films,
+      homeworld: people.homeworld,
+    }));
   }
 }
